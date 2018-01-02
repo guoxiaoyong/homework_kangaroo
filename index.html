@@ -1,0 +1,100 @@
+<!doctype html>
+<html>
+<head>
+<title>Homework</title>
+<script type="text/javascript" src="//unpkg.com/react@16/umd/react.development.js"></script>
+<script type="text/javascript" src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script type="text/javascript" src="//unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+<h1>Homework</h1>
+<div id="root"></div>
+</body>
+
+<script type="text/babel">
+
+class VideoBox extends React.Component {
+  render() {
+    return <div>
+      <h2>{this.props.title}</h2>
+      <video src={this.props.src} width="600" controls="controls">
+      Please upgrade your browser.
+      </video>
+    </div>
+  }
+}
+
+class Page extends React.Component {
+  createVideoBoxes() {
+    let result = []
+    for (let video of this.props.videos) {
+      result.push(
+        <VideoBox
+          src={'video/' + video.filename}
+          title={video.title}
+          key={video.filename}
+        />
+      );
+    }
+    return result;
+  }
+
+  render() {
+    return <div id="page">
+      {this.createVideoBoxes(this.props.videos)}
+    </div>
+  }
+}
+
+let videos = [
+  {
+    title: "All About Cool Inventions",
+    filename: "all_about_cool_inventions_nat_geo_kids_cool_inventions_playlist.mp4"
+  },
+  {
+    title: "Angles Song By Numberock",
+    filename: "angles_song_by_numberock.mp4"
+  },
+  {
+    title: "Find Out about Insects",
+    filename: "find_out_about_insects_nat_geo_kids_insects_playlist.mp4"
+  },
+  {
+    title: "Make New Figures Two Dimensional 2D Shapes From Learning Adventures",
+    filename: "make_new_figures_two_dimensional_2d_shapes_from_learning_adventures.mp4"
+  },
+  {
+    title: "Parallel Perpendicular Intersecting Lines Song by Numberock",
+    filename: "parallel_perpendicular_intersecting_lines_song_by_numberock.mp4"
+  },
+  {
+    title: "Polygon Song",
+    filename: "polygon_song_video.mp4"
+  },
+  {
+    title: "Polygons Educational Video",
+    filename: "polygons_educational_video_for_kids.mp4"
+  },
+  {
+    title: "Polygons for Kids Rap Song",
+    filename: "polygons_for_kids_rap_song_geometry_video_2nd_4th_grade.mp4"
+  },
+  {
+    title: "Quarilaterals Song for Kids Geometry",
+    filename: "quadrilaterals_song_for_kids_geometry_video_by_numberock.mp4"
+  },
+  {
+    title: "Sides Corners of Different Shapes",
+    filename: "sides_corners_of_different_shapes.mp4"
+  },
+  {
+    title: "The Polygon Song",
+    filename: "the_polygon_song.mp4"
+  },
+]
+
+ReactDOM.render(<Page videos={videos}/>, document.getElementById("root"));
+</script>
+</html>
