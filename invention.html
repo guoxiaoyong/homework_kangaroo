@@ -1,0 +1,124 @@
+<!doctype html>
+<html>
+<head>
+<title>Homework</title>
+<script type="text/javascript" src="//unpkg.com/react@16/umd/react.development.js"></script>
+<script type="text/javascript" src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script type="text/javascript" src="//unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+<h1>Homework</h1>
+<div id="root"></div>
+</body>
+
+<script type="text/babel">
+
+class VideoBox extends React.Component {
+  render() {
+    return <div>
+      <h2>{this.props.title}</h2>
+      <video src={this.props.src} width="600" controls="controls">
+      Please upgrade your browser.
+      </video>
+    </div>
+  }
+}
+
+class Page extends React.Component {
+  createVideoBoxes() {
+    let result = []
+    for (let video of this.props.videos) {
+      result.push(
+        <VideoBox
+          src={'invention/' + video.filename}
+          title={video.title}
+          key={video.filename}
+        />
+      );
+    }
+    return result;
+  }
+
+  render() {
+    return <div id="page">
+      {this.createVideoBoxes(this.props.videos)}
+    </div>
+  }
+}
+
+let videos = [
+  {
+    "title": "3drag The 3d Printer For Chocolate And Food",
+    "filename": "3drag_the_3d_printer_for_chocolate_and_food.mp4"
+  },
+  {
+    "title": "All About Alexander Graham Bell Nat Geo Kids Cool Inventions Playlist",
+    "filename": "all_about_alexander_graham_bell_nat_geo_kids_cool_inventions_playlist.mp4"
+  },
+  {
+    "title": "All About Cool Inventions Nat Geo Kids Cool Inventions Playlist",
+    "filename": "all_about_cool_inventions_nat_geo_kids_cool_inventions_playlist.mp4"
+  },
+  {
+    "title": "All About Rube Goldberg Nat Geo Kids Cool Inventions Playlist",
+    "filename": "all_about_rube_goldberg_nat_geo_kids_cool_inventions_playlist.mp4"
+  },
+  {
+    "title": "All About Thomas Edison Nat Geo Kids Cool Inventions Playlist",
+    "filename": "all_about_thomas_edison_nat_geo_kids_cool_inventions_playlist.mp4"
+  },
+  {
+    "title": "Amazing Kid Inventions",
+    "filename": "amazing_kid_inventions.mp4"
+  },
+  {
+    "title": "Check Out 3d Printers Nat Geo Kids Cool Inventions Playlist",
+    "filename": "check_out_3d_printers_nat_geo_kids_cool_inventions_playlist.mp4"
+  },
+  {
+    "title": "Cool Inventions Finale Nat Geo Kids Cool Inventions Playlist",
+    "filename": "cool_inventions_finale_nat_geo_kids_cool_inventions_playlist.mp4"
+  },
+  {
+    "title": "George Ferris And His Amazing Wheel Stuff Of Genius",
+    "filename": "george_ferris_and_his_amazing_wheel_stuff_of_genius.mp4"
+  },
+  {
+    "title": "Great Innovators The Wright Brothers And The Airplane By Storybots",
+    "filename": "great_innovators_the_wright_brothers_and_the_airplane_by_storybots.mp4"
+  },
+  {
+    "title": "Great Innovators Thomas Edison And The Light Bulb By Storybots",
+    "filename": "great_innovators_thomas_edison_and_the_light_bulb_by_storybots.mp4"
+  },
+  {
+    "title": "How To Be An Inventor Kid President",
+    "filename": "how_to_be_an_inventor_kid_president.mp4"
+  },
+  {
+    "title": "Mallory Kievman Hiccupops Make Your Mark Disney Channel Official",
+    "filename": "mallory_kievman_hiccupops_make_your_mark_disney_channel_official.mp4"
+  },
+  {
+    "title": "Ok Go Kids Build Your Very Own Rube Goldberg Machine",
+    "filename": "ok_go_kids_build_your_very_own_rube_goldberg_machine.mp4"
+  },
+  {
+    "title": "The First Flying Machine Nat Geo Kids Cool Inventions Playlist",
+    "filename": "the_first_flying_machine_nat_geo_kids_cool_inventions_playlist.mp4"
+  },
+  {
+    "title": "This Is Alexander Graham Bell S Voice",
+    "filename": "this_is_alexander_graham_bell_s_voice.mp4"
+  },
+  {
+    "title": "Who Invented The Ferris Wheel Nat Geo Kids Cool Inventions Playlist",
+    "filename": "who_invented_the_ferris_wheel_nat_geo_kids_cool_inventions_playlist.mp4"
+  }
+]
+
+ReactDOM.render(<Page videos={videos}/>, document.getElementById("root"));
+</script>
+</html>
