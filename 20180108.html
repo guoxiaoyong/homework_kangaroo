@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+<title>Homework</title>
+<script type="text/javascript" src="//unpkg.com/react@16/umd/react.development.js"></script>
+<script type="text/javascript" src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script type="text/javascript" src="//unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+<h1>Homework</h1>
+<div id="root"></div>
+</body>
+
+<script type="text/babel">
+
+class VideoBox extends React.Component {
+  render() {
+    return <div>
+      <h2>{this.props.title}</h2>
+      <video src={this.props.src} width="600" controls="controls">
+      Please upgrade your browser.
+      </video>
+    </div>
+  }
+}
+
+class Page extends React.Component {
+  createVideoBoxes() {
+    let result = []
+    for (let video of this.props.videos) {
+      result.push(
+        <VideoBox
+          src={'20180108/' + video.filename}
+          title={video.title}
+          key={video.filename}
+        />
+      );
+    }
+    return result;
+  }
+
+  render() {
+    return <div id="page">
+      {this.createVideoBoxes(this.props.videos)}
+    </div>
+  }
+}
+
+let videos = [
+  {
+    "title": "Think Positively Cartoon",
+    "filename": "think_positively_cartoon.mp4"
+  },
+  {
+    "title": "The Power Of Positive Self Talk",
+    "filename": "the_power_of_positive_self_talk.mp4"
+  },
+  {
+    "title": "Positive Self Talk",
+    "filename": "positive_self_talk.mp4"
+  }
+]
+
+ReactDOM.render(<Page videos={videos}/>, document.getElementById("root"));
+</script>
+</html>
