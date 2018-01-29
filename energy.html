@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+<head>
+<title>Homework</title>
+<script type="text/javascript" src="//unpkg.com/react@16/umd/react.development.js"></script>
+<script type="text/javascript" src="//unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script type="text/javascript" src="//unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+<script type="text/javascript" src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+<h1>Homework</h1>
+<div id="root"></div>
+</body>
+
+<script type="text/babel">
+
+class VideoBox extends React.Component {
+  render() {
+    return <div>
+      <h2>{this.props.title}</h2>
+      <video src={this.props.src} width="600" controls="controls">
+      Please upgrade your browser.
+      </video>
+    </div>
+  }
+}
+
+class Page extends React.Component {
+  createVideoBoxes() {
+    let result = []
+    for (let video of this.props.videos) {
+      result.push(
+        <VideoBox
+          src={'20180130/' + video.filename}
+          title={video.title}
+          key={video.filename}
+        />
+      );
+    }
+    return result;
+  }
+
+  render() {
+    return <div id="page">
+      {this.createVideoBoxes(this.props.videos)}
+    </div>
+  }
+}
+
+let videos = [
+  {
+    "title": "Energy The Dr Binocs Show Educational Videos For Kids",
+    "filename": "energy_the_dr_binocs_show_educational_videos_for_kids.mp4"
+  },
+  {
+    "title": "Energy Transformations",
+    "filename": "energy_transformations.mp4"
+  },
+  {
+    "title": "Energy Transformations In Roadrunner Cartoons",
+    "filename": "energy_transformations_in_roadrunner_cartoons.mp4"
+  },
+  {
+    "title": "Energy Transformations Science For Fun",
+    "filename": "energy_transformations_science_for_fun.mp4"
+  },
+  {
+    "title": "Science For Kids Energy Transformations Video",
+    "filename": "science_for_kids_energy_transformations_video.mp4"
+  }
+]
+ReactDOM.render(<Page videos={videos}/>, document.getElementById("root"));
+</script>
+</html>
